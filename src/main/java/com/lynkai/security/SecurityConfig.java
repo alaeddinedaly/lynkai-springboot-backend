@@ -33,6 +33,7 @@ public class SecurityConfig {
                         .requestMatchers("/uploads/**").permitAll()
                         .anyRequest().authenticated()
                 )
+
                 // Disable frame options ONLY for /uploads/**
                 .headers(headers -> headers
                         .frameOptions(HeadersConfigurer.FrameOptionsConfig::disable)

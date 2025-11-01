@@ -45,12 +45,10 @@ public class UserService {
      */
     public Long getCurrentUserId() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-
         if (principal instanceof UserDetails userDetails) {
-            return Long.parseLong(userDetails.getUsername()); // we stored userId in username
+            return Long.parseLong(userDetails.getUsername());
         }
-
-        throw new IllegalStateException("Unexpected principal type: " + principal.getClass());
+        throw new IllegalStateException("No authenticated user");
     }
 
     /**

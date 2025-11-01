@@ -5,6 +5,7 @@ import com.lynkai.repository.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
@@ -37,16 +38,14 @@ public class UserController {
 
     // Get currently authenticated user
     @GetMapping("/me")
-    public ResponseEntity<User> getCurrentUser() {
-
+    public ResponseEntity<Long> getCurrentUserId() {
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-        if (!(principal instanceof Long userId)) {
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        if (principal instanceof UserDetails userDetails) {
+            Long userId = Long.parseLong(userDetails.getUsername());
+            return ResponseEntity.ok(userId);
         }
 
-        Optional<User> userOpt = userRepository.findById(userId);
-        return userOpt.map(ResponseEntity::ok)
-                .orElseGet(() -> ResponseEntity.notFound().build());
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
     }
 }
