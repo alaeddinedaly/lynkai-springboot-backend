@@ -22,8 +22,8 @@ Spring Boot REST API for LynkAI - providing authentication, document management,
 
 1. **Clone the repository**
    ```bash
-   git clone <repository-url>
-   cd lynkai-backend
+   git clone https://github.com/alaeddinedaly/lynkai-springboot-backend
+   cd lynkai-springboot-backend
    ```
 
 2. **Create MySQL Database**
@@ -316,5 +316,5 @@ This project is licensed under the MIT License.
 
 ## 🔗 Related Projects
 
-- [LynkAI Frontend](../lynkai-frontend) - Angular Frontend
-- [LynkAI RAG](../lynkai-rag) - Python RAG Service
+- [LynkAI Frontend](../lynkai-angular-frontend) - Angular Frontend
+- [LynkAI RAG](../lynkai-rag-backend) - Python RAG Service
